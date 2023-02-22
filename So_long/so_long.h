@@ -14,4 +14,6 @@ typedef struct	s_game {
 //	int		endian;
 }				t_game;
 
+void map_reader(t_game game);
+
 #endif

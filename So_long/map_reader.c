@@ -6,7 +6,7 @@
 /*   By: adi-fort <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:22:48 by adi-fort          #+#    #+#             */
-/*   Updated: 2023/02/22 15:24:17 by adi-fort         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:46:10 by adi-fort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-void map_reader(t_game game, char	**av)
+void map_reader(t_game game)
 {
 	int	fd = 0;
 	char *line;
@@ -29,8 +29,9 @@ void map_reader(t_game game, char	**av)
 	game.line_lenght = 0;
 	game.line_width = 0;
 
-	av[1][0] = 1;
-	fd = read(fd, buffer, 10000);
+	
+	fd = open("mlx.xpm", O_RDONLY);
+	read(fd, buffer, 10000);
 	line =  get_next_line(fd);
 	if (!line)
 		return ;
