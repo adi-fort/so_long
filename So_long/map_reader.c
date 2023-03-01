@@ -6,7 +6,7 @@
 /*   By: adi-fort <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:22:48 by adi-fort          #+#    #+#             */
-/*   Updated: 2023/02/22 15:46:10 by adi-fort         ###   ########.fr       */
+/*   Updated: 2023/03/01 14:01:57 by adi-fort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,62 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-void map_reader(t_game game)
+void map_reader(t_game *game)
 {
-	int	fd = 0;
 	char *line;
-	static char	*buffer;
 
-	game.line_lenght = 0;
-	game.line_width = 0;
-
-	
-	fd = open("mlx.xpm", O_RDONLY);
-	read(fd, buffer, 10000);
-	line =  get_next_line(fd);
+	game->line_lenght = 0;
+	game->line_width = 0;
+	game->fd = open("map.ber", O_RDONLY);
+	line =  get_next_line(game->fd);
 	if (!line)
 		return ;
-	game.line_lenght = ft_strlen(line);
+	game->line_lenght = ft_strlen(line);
 	while (1)
 	{
-		game.line_width += 1;
+		game->line_width += 1;
 		free(line);
-		line = get_next_line(fd);
-	//	if (game.line_lenght != ft_strlen(line))
-	//	{
-	//		free(line);
-		//	game.err = 1;
-	//		break;
-	//	}
+		line = get_next_line(game->fd);
 		if (!line)
 			break ;
 	}	
-	ft_printf("lenght: %d", game.line_lenght);
-	ft_printf("width:  %d", game.line_width);
+	close(game->fd);
+}
+
+void map_malloc(t_game *game)
+{
+	char	*line;
+	int		i;
+
+	game->fd = open("map.ber", O_RDONLY);
+	line = get_next_line(game->fd);
+	game->map = (char **) malloc (sizeof(char *) * (game->line_width + 1));
+	i = 0;
+	while (line)
+	{
+		game->map[i] = line;
+		line = get_next_line(game->fd);
+		i++;
+	}
+	game->map[i] = NULL;
+	free (line);
+	line = NULL;
+	close(game->fd);
+}
+
+void	printf_mat(char **strs)
+{
+	int i;
+	int	j;
+
+	i = -1;
+	while(strs[++i])
+	{
+		j = -1;
+		while (strs[i][++j])
+		{
+			printf("%c", strs[i][j]);
+		}
+		printf("\n");
+	}
 }

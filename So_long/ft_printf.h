@@ -6,19 +6,21 @@
 /*   By: adi-fort <adi-fort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:36:27 by adi-fort          #+#    #+#             */
-/*   Updated: 2023/02/06 15:20:39 by adi-fort         ###   ########.fr       */
+/*   Updated: 2023/02/24 12:23:11 by adi-fort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+#include "so_long.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <string.h>
 # include <stdarg.h>
 
+int		ft_strlen(const char *s);
 int		ft_printf(const char *format, ...);
 void	ft_putstring(char i, int *count, va_list list);
 int		ft_putchar_ret(char c);
