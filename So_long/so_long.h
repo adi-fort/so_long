@@ -13,11 +13,15 @@ typedef struct	s_game { //nome della struttura creata
 	void	*player; //immagine del giocatore
 	int		fd;
 	int		line_lenght;
+	int		pi; //posizione sulle ascisse del giocatore
+	int		pj;	//posizione sullórdinata del giocatore
 	void	*wall;
 	void	*exit;
+	void	*door;
 	void	*mushroom;
 	int		line_width;
 	void	*texture; //scacchiera
+	int		counter; //contatore di collezionabili
 }				t_game;
 
 void	printf_mat(char **strs);
@@ -27,6 +31,9 @@ void	texture_img(t_game *game);
 void	wall_img(t_game *game);
 void	map_malloc(t_game *game);
 void	mushroom_img(t_game *game);
+void	exit_img(t_game *game);
+int		key_hook(int key, t_game *game);
+void	open_door(t_game *game);
 
 #endif
 

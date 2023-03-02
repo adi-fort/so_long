@@ -3,11 +3,27 @@
 void	player_img(t_game *game)
 {
 	int i;
+	int j;
 
 	game->player = mlx_xpm_file_to_image(game->mlx, "images__1_-removebg-preview.xpm", &i, &i);
 	if (!game->player)
 		return ;
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->player, 4 * i, 3 * i);
+	i = 0;
+	while (i < game->line_width - 1)
+	{
+		j = 0;
+		while (game->map[i][j] != 10)
+		{
+			if (game->map[i][j] == 'P')
+			{
+				mlx_put_image_to_window(game->mlx, game->mlx_win, game->player, j * 50, i * 50);
+				game->pi = i;
+				game->pj = j;
+			}
+			j++;
+		}
+		i++;
+	}
 }
 	
 void	texture_img(t_game *game)
@@ -58,8 +74,9 @@ void	mushroom_img(t_game *game)
 {
 	int i;
 	int j;
-	
-	game->mushroom = mlx_xpm_file_to_image(game->mlx, "mush1.xpm", &i, &j);
+
+	game->counter = 0;
+	game->mushroom = mlx_xpm_file_to_image(game->mlx, "mush3.xpm", &i, &j);
 	if(!game->mushroom)
 		return ;
 	i = 0;
@@ -69,7 +86,32 @@ void	mushroom_img(t_game *game)
 		while (game->map[i][j] != 10)
 		{
 			if (game->map[i][j] == 'C')
+			{
+				game->counter++;
 				mlx_put_image_to_window(game->mlx, game->mlx_win, game->mushroom, j * 50, i * 50);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	exit_img(t_game *game)
+{
+	int i;
+	int j;
+
+	game->exit = mlx_xpm_file_to_image(game->mlx, "exit.xpm", &i, &j);
+	if (!game->exit)
+		return ;
+	i = 0;
+	while(i < game->line_width -1)
+	{
+		j = 0;
+		while(game->map[i][j] != 10)
+		{
+			if (game->map[i][j] == 'E')
+				mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit, j * 50, i * 50);
 			j++;
 		}
 		i++;
