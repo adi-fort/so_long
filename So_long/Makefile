@@ -6,12 +6,12 @@
 #    By: adi-fort <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/22 14:29:28 by adi-fort          #+#    #+#              #
-#    Updated: 2023/03/02 16:31:55 by adi-fort         ###   ########.fr        #
+#    Updated: 2023/03/06 16:09:24 by adi-fort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
-SRCS = ft_itoa_ex_p.c ft_printf.c ft_putnbr_ret.c ft_putstring.c ft_putchar_ret.c ft_putstr_ret.c ft_itoa.c ft_itoa_ex.c ft_utilities.c map_reader.c ft_exadecimal.c ft_pointer.c ft_itoa_u.c get_next_line.c ft_strlen.c draw_map.c main.c move_player.c open_door.c 
+SRCS = map_check.c ft_itoa_ex_p.c ft_printf.c ft_putnbr_ret.c ft_putstring.c ft_putchar_ret.c ft_putstr_ret.c ft_itoa.c ft_itoa_ex.c ft_utilities.c map_reader.c ft_exadecimal.c ft_pointer.c ft_itoa_u.c get_next_line.c ft_strlen.c draw_map.c main.c move_player.c open_door.c 
 OBJ		= ${SRCS:.c=.o}
 FLAGS	= -Wall -Werror -Wextra
 OPTIONS	= -c
@@ -24,7 +24,7 @@ RM		= rm -f
 $(NAME): ${OBJ}
 	@make -C ./mlx
 	@cp ./mlx/libmlx.dylib .
-	$(CC) $(OBJ) -L . -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 all: ${NAME}
 

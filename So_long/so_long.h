@@ -15,6 +15,7 @@ typedef struct	s_game { //nome della struttura creata
 	int		line_lenght;
 	int		pi; //posizione sulle ascisse del giocatore
 	int		pj;	//posizione sullórdinata del giocatore
+	int		moves;
 	void	*wall;
 	void	*exit;
 	void	*door;
@@ -34,7 +35,8 @@ void	mushroom_img(t_game *game);
 void	exit_img(t_game *game);
 int		key_hook(int key, t_game *game);
 void	open_door(t_game *game);
-
+void	map_check(t_game *game);
+void	check_all(t_game *game);
 #endif
 
 

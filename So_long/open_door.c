@@ -5,7 +5,7 @@ void	open_door(t_game *game)
 	int i;
 	int	j;
 
-	game->door = mlx_xpm_file_to_image(game->mlx, "porta.xpm", &i, &j);
+	game->door = mlx_xpm_file_to_image(game->mlx, "case.xpm", &i, &j);
 	if (!game->door)
 		return ;
 	i = 0;

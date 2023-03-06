@@ -6,7 +6,7 @@
 /*   By: adi-fort <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:22:48 by adi-fort          #+#    #+#             */
-/*   Updated: 2023/03/02 13:48:22 by adi-fort         ###   ########.fr       */
+/*   Updated: 2023/03/06 17:52:20 by adi-fort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ void map_malloc(t_game *game)
 	while (line)
 	{
 		game->map[i] = line;
-		line = get_next_line(game->fd);
 		i++;
+		line = get_next_line(game->fd);
+		//i++;
 	}
 	game->map[i] = NULL;
 	free (line);

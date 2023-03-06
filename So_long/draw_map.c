@@ -5,7 +5,7 @@ void	player_img(t_game *game)
 	int i;
 	int j;
 
-	game->player = mlx_xpm_file_to_image(game->mlx, "images__1_-removebg-preview.xpm", &i, &i);
+	game->player = mlx_xpm_file_to_image(game->mlx, "pulp.xpm", &i, &i);
 	if (!game->player)
 		return ;
 	i = 0;
@@ -28,23 +28,22 @@ void	player_img(t_game *game)
 	
 void	texture_img(t_game *game)
 {	
-	int	x;
-	int	y; 
+	int	i;
+	int	j; 
 	
-	game->texture = mlx_xpm_file_to_image(game->mlx, "Texture_resized50x50.xpm", &x, &y);
+	game->texture = mlx_xpm_file_to_image(game->mlx, "Grass.xpm", &i, &j);
 	if (!game->texture)
 		return ;
-	y = 0;
-	x = 0;
-	while (x <= 1000)
+	i = 0;;
+	while (i < game->line_width - 1)
 	{	
-		while (y <= 600)
+		j = 0;
+		while (game->map[i][j] != 10)
 		{
-			mlx_put_image_to_window(game->mlx, game->mlx_win, game->texture, x, y);
-			y += 50;
+			mlx_put_image_to_window(game->mlx, game->mlx_win, game->texture, j * 50, i * 50);
+			j++;
 		}
-		y = 0;
-		x += 50;
+		i++;
 	}
 }
 
@@ -101,7 +100,7 @@ void	exit_img(t_game *game)
 	int i;
 	int j;
 
-	game->exit = mlx_xpm_file_to_image(game->mlx, "exit.xpm", &i, &j);
+	game->exit = mlx_xpm_file_to_image(game->mlx, "pf.xpm", &i, &j);
 	if (!game->exit)
 		return ;
 	i = 0;
